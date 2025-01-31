@@ -1,6 +1,7 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from ..config import settings
+from ..dependencies import oauth2_scheme
 from ..utils import BelvoAPIClient
 
 client = BelvoAPIClient(
@@ -12,6 +13,7 @@ client = BelvoAPIClient(
 
 router = APIRouter(
     tags=["belvo"],
+    dependencies=[Depends(oauth2_scheme)],
     responses={404: {"description": "Not found"}},
 )
 
