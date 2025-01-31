@@ -1,4 +1,10 @@
+from pydantic import BaseModel
 from sqlmodel import Field, SQLModel
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
 
 
 class User(SQLModel, table=True):

@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
 from .db import create_db_and_tables
-from .routers import belvo, users
+from .routers import auth, belvo, users
 
 app = FastAPI()
 
@@ -15,7 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+app.include_router(auth.router)
 app.include_router(belvo.router)
 app.include_router(users.router)
 
